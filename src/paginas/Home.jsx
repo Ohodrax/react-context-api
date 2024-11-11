@@ -11,7 +11,11 @@ import "./Home.css";
 export default function Home() {
     // const { counter } = useContext(CounterContext);
     const { counter } = useCounterContext();
-    const { color } = useTitleColorContext();
+    const { color, dispatch } = useTitleColorContext();
+
+    const setTitleColor = (color) => {
+        dispatch({type: color});
+    }
 
     return(
         <div className="home">
@@ -19,6 +23,11 @@ export default function Home() {
             <p>Valor do contador: { counter }</p>
             {/* <button onClick={() => {setCounter(counter + 1)}}>Add</button> */}
             <ChangeCounter/>
+            <div>
+                <button onClick={() => setTitleColor("RED")}>Vermelho</button>
+                <button onClick={() => setTitleColor("BLUE")}>Azul</button>
+                <button onClick={() => setTitleColor("")}>Padrão</button>
+            </div>
         </div>
     );
 }
